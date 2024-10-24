@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Snackbar, IconButton, SnackbarContent } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import axios from 'axios';
-import isEmail from 'validator/lib/isEmail';
+// import { Snackbar, IconButton, SnackbarContent } from '@material-ui/core';
+// import CloseIcon from '@material-ui/icons/Close';
+// import axios from 'axios';
+// import isEmail from 'validator/lib/isEmail';
+import emailjs from '@emailjs/browser';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     FaTwitter,
@@ -17,7 +18,7 @@ import {
     FaGitlab,
     FaMediumM,
 } from 'react-icons/fa';
-import { AiOutlineSend, AiOutlineCheckCircle } from 'react-icons/ai';
+// import { AiOutlineSend, AiOutlineCheckCircle } from 'react-icons/ai';
 import { FiPhone, FiAtSign } from 'react-icons/fi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 
@@ -28,25 +29,7 @@ import { contactsData } from '../../data/contactsData';
 import './Contacts.css';
 
 function Contacts() {
-    const [open, setOpen] = useState(false);
-
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-
-    const [success, setSuccess] = useState(false);
-    const [errMsg, setErrMsg] = useState('');
-
     const { theme } = useContext(ThemeContext);
-
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
-    };
-
     const useStyles = makeStyles((t) => ({
         input: {
             border: `4px solid ${theme.primary80}`,
@@ -126,39 +109,38 @@ function Contacts() {
             },
         },
     }));
-
     const classes = useStyles();
 
-    const handleContactForm = (e) => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (name && email && message) {
-            if (isEmail(email)) {
-                const responseData = {
-                    name: name,
-                    email: email,
-                    message: message,
-                };
+        const serviceId = 'service_vzh0zxi';
+        const templateId = 'template_n97bbvr';
+        const publicKey = '5rXw9TQXRpXvqb0LK';
 
-                axios.post(contactsData.sheetAPI, responseData).then((res) => {
-                    console.log('success');
-                    setSuccess(true);
-                    setErrMsg('');
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            to_name: name,
+            message: message,
+        };
 
-                    setName('');
-                    setEmail('');
-                    setMessage('');
-                    setOpen(false);
-                });
-            } else {
-                setErrMsg('Invalid email');
-                setOpen(true);
-            }
-        } else {
-            setErrMsg('Enter all the fields');
-            setOpen(true);
-        }
-    };
+        emailjs.send(serviceId, templateId, templateParams, publicKey)
+        .then((response) => {
+          console.log('Email sent successfully!', response);
+          setName('');
+          setEmail('');
+          setMessage('');
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+        });
+
+    }
 
     return (
         <div
@@ -170,17 +152,17 @@ function Contacts() {
                 <h1 style={{ color: theme.primary }}>Contacts</h1>
                 <div className='contacts-body'>
                     <div className='contacts-form'>
-                        <form onSubmit={handleContactForm}>
+                        <form onSubmit={handleSubmit}>
                             <div className='input-container'>
                                 <label htmlFor='Name' className={classes.label}>
                                     Name
                                 </label>
                                 <input
-                                    placeholder='John Doe'
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder='Your Name'
                                     type='text'
                                     name='Name'
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)} 
                                     className={`form-input ${classes.input}`}
                                 />
                             </div>
@@ -192,7 +174,7 @@ function Contacts() {
                                     Email
                                 </label>
                                 <input
-                                    placeholder='John@doe.com'
+                                    placeholder='Your Email'
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type='email'
@@ -218,66 +200,9 @@ function Contacts() {
                             </div>
 
                             <div className='submit-btn'>
-                                <button
-                                    type='submit'
-                                    className={classes.submitBtn}
-                                >
-                                    <p>{!success ? 'Send' : 'Sent'}</p>
-                                    <div className='submit-icon'>
-                                        <AiOutlineSend
-                                            className='send-icon'
-                                            style={{
-                                                animation: !success
-                                                    ? 'initial'
-                                                    : 'fly 0.8s linear both',
-                                                position: success
-                                                    ? 'absolute'
-                                                    : 'initial',
-                                            }}
-                                        />
-                                        <AiOutlineCheckCircle
-                                            className='success-icon'
-                                            style={{
-                                                display: !success
-                                                    ? 'none'
-                                                    : 'inline-flex',
-                                                opacity: !success ? '0' : '1',
-                                            }}
-                                        />
-                                    </div>
-                                </button>
+                                <button type='submit' className={classes.submitBtn}>Send Email</button>
                             </div>
                         </form>
-                        <Snackbar
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'center',
-                            }}
-                            open={open}
-                            autoHideDuration={4000}
-                            onClose={handleClose}
-                        >
-                            <SnackbarContent
-                                action={
-                                    <React.Fragment>
-                                        <IconButton
-                                            size='small'
-                                            aria-label='close'
-                                            color='inherit'
-                                            onClick={handleClose}
-                                        >
-                                            <CloseIcon fontSize='small' />
-                                        </IconButton>
-                                    </React.Fragment>
-                                }
-                                style={{
-                                    backgroundColor: theme.primary,
-                                    color: theme.secondary,
-                                    fontFamily: 'var(--primaryFont)',
-                                }}
-                                message={errMsg}
-                            />
-                        </Snackbar>
                     </div>
 
                     <div className='contacts-details'>

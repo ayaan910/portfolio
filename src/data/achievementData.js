@@ -1,30 +1,32 @@
+// let data = "I’m Achieved professional experience in the tech industry, specialising in mobile and web application development. My technical expertise in Flutter, Android, iOS, Kotlin and Dart with a strong background in software engineering. Demonstrated ability to deliver high-quality software solutions and collaborate effectively with cross-functional teams. My career is also marked by a commitment to continuous learning and adaptation, integrating the latest technologies into my work to stay at the forefront of industry trends. Whether working on sports, media, or health applications, I have a proven track record of leading mobile solutions that significantly enhance user engagement and satisfaction";
+
 export const achievementData = {
-    bio : "Putting quantified achievements on a resume is great, but I just don’t work with hard numbers. I have no data to support the quality of my work. If you have lots of relevant experience, the heading statement of your resume will be a summary.",
-    achievements : [
+    bio: "I’m Achieved professional experience in the tech industry, specialising in mobile and web application development. My technical expertise in Flutter, Android, iOS, Kotlin and Dart with a strong background in software engineering. Demonstrated ability to deliver high-quality software solutions and collaborate effectively with cross-functional teams. My career is also marked by a commitment to continuous learning and adaptation, integrating the latest technologies into my work to stay at the forefront of industry trends. Whether working on sports, media, or health applications, I have a proven track record of leading mobile solutions that significantly enhance user engagement and satisfaction.",
+    achievements: [
         {
-            id : 1,
-            title : 'Google Cloud certification',
-            details : 'Google Cloud certifications validate your expertise and showcase your ability to transform businesses with Google Cloud technology.',
-            date : 'Aug 20, 2019',
-            field : 'Automation',
-            image : 'https://images.unsplash.com/photo-1573141597928-403fcee0e056?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80'
+            id: 1,
+            title: 'Shining Star Performer Certificate',
+            details: 'Achieved the Start Performer Certification in Singsys',
+            date: 'Dec 29, 2023',
+            field: 'CS/IT',
+            image: 'https://media.licdn.com/dms/image/v2/D4D2DAQHrqRU3lKadhQ/profile-treasury-image-shrink_8192_8192/profile-treasury-image-shrink_8192_8192/0/1719367055982?e=1730361600&v=beta&t=Z2TbnAiAhFrcaIWQrsQ2M7jdxSUv_LRDIPEBSlcV_JQ'
         },
         {
-            id : 2,
-            title : 'AWS Certification',
-            details : 'Validate technical skills and cloud expertise to grow your career and business.',
-            date : 'Aug 20, 2019',
-            field : 'Automation',
-            image : 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+            id: 2,
+            title: 'Python Programming',
+            details: 'Python Programming certification from IIT Kanpur',
+            date: 'june 06, 2020',
+            field: 'CS/IT',
+            image: 'https://media.licdn.com/dms/image/v2/D4D2DAQFsauoaGnA81w/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1719358674232?e=1730361600&v=beta&t=BI2isl5pKxxdxYI54DkznDDAotdSLvKXENTlBLo-B9M'
         },
         {
-            id : 3,
-            title : 'Professional Data Engineer Certification',
-            details : 'Professional Data Engineers enable data-driven decision making by collecting, transforming, and publishing data.',
-            date : 'Aug 20, 2019',
-            field : 'Automation',
-            image : 'https://images.unsplash.com/photo-1489389944381-3471b5b30f04?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        }
+            id: 3,
+            title: 'Artificial Intelligence',
+            details: 'Completed the training on Artificial,Machine Learning & Deep Learning',
+            date: 'Sep 30, 2021',
+            field: 'CS/IT',
+            image: 'https://media.licdn.com/dms/image/v2/D4D2DAQHJn6z_c7H4qg/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1719360335949?e=1730361600&v=beta&t=ld_I0zI5x_JAauCGCogP7cfbIFlPw1E8TdCD--VicTI'
+        },
 
     ]
 }
